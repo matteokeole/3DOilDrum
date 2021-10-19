@@ -1,4 +1,4 @@
-const DRUM_TEXTURE = "drum2.png",
+const DRUM_TEXTURE = "https://keithclark.co.uk/labs/css-fps/drum2.png",
 createFace = function(w, h, x, y, z, rx, ry, tsrc, tx, ty, br) {
 	let alpha = Math.cos(rx / 1.5) * Math.cos(ry / 2),
 	grad = `linear-gradient(rgba(0, 0, 0, ${alpha.toFixed(2)}), rgba(0, 0, 0, ${alpha.toFixed(2)}))`,
