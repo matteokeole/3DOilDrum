@@ -16,7 +16,6 @@ createFace = function(w, h, x, y, z, rx, ry, tsrc, tx, ty, br) {
 	face.style.marginLeft = `${-(w / 2).toFixed(2)}px`;
 	face.style["border-radius"] = br ? "50%" : "0px";
 	face.style["-webkit-transform"] = transform;
-	face.style["-ms-transform"] = transform;
 	face.style.transform = transform;
 	return face
 },
@@ -33,7 +32,7 @@ createTube = function(dia, height, sides, texture) {
 	}
 	return tube
 },
-// Cube rotation values
+// Movement
 R = {
 	x: 45, y: -22.5,
 	now: {x: 0, y: 0},
@@ -49,15 +48,28 @@ scale = 2, // Barrel scale
 // Mouse events
 M = {
 	down: function(e) {
-		R.on.x = -w2 + e.clientX;
-		R.on.y = h2 + -e.clientY;
+		if (!e.clientX) {
+			// Touch screen
+			R.on.x = -w2 + e.touches[0].clientX;
+			R.on.y = h2 + -e.touches[0].clientY
+		} else {
+			R.on.x = -w2 + e.clientX;
+			R.on.y = h2 + -e.clientY
+		}
 		R.old.x = R.x;
 		R.old.y = R.y;
-		document.addEventListener("mousemove", M.move)
+		document.addEventListener("mousemove", M.move);
+		document.addEventListener("touchmove", M.move)
 	},
 	move: function(e) {
-		R.now.x = -w2 + e.clientX;
-		R.now.y = h2 -e.clientY;
+		if (!e.clientX) {
+			// Touch screen
+			R.now.x = -w2 + e.touches[0].clientX;
+			R.now.y = h2 -e.touches[0].clientY
+		} else {
+			R.now.x = -w2 + e.clientX;
+			R.now.y = h2 -e.clientY
+		}
 		R.x = ((R.now.x - R.on.x) / S) + R.old.x;
 		R.y = ((R.now.y - R.on.y) / S) + R.old.y;
 		if (R.x < -360) R.x += 360;
@@ -69,7 +81,10 @@ M = {
 		assembly.style["-ms-transform"] = transform;
 		assembly.style.transform = transform
 	},
-	up: function() {this.removeEventListener("mousemove", M.move)}
+	up: function() {
+		document.removeEventListener("mousemove", M.move);
+		document.removeEventListener("touchmove", M.move)
+	}
 };
 
 // Create barrel
@@ -84,5 +99,7 @@ assembly.style["-webkit-transform"] = transform;
 assembly.style["-ms-transform"] = transform;
 assembly.style.transform = transform;
 // Event listeners
-document.addEventListener("mousedown", M.down);
-document.addEventListener("mouseup", M.up)
+addEventListener("mousedown", M.down);
+addEventListener("touchstart", M.down);
+addEventListener("mouseup", M.up);
+addEventListener("touchend", M.up)
