@@ -1,12 +1,7 @@
 /* Texture option */
 
-.texture-option {
-	margin-bottom: 5px;
-	cursor: pointer;
-}
-
 #texture {
-	display: inline-block;
+	margin-bottom: 5px;
 	padding: 0;
 	border: unset;
 	background-color: unset;
