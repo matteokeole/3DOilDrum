@@ -1,0 +1,12 @@
+/* Barrel mesh parts */
+.part {
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	-webkit-backface-visibility: visible;
+	backface-visibility: visible;
+	-webkit-mask-image: none !important;
+	mask-image: none !important;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}

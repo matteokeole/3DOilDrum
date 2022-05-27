@@ -1,0 +1,17 @@
+@import url(mesh.css);
+@import url(options.css);
+
+body {
+	-webkit-perspective: 500px;
+	perspective: 500px;
+	height: 100vh;
+	overflow: hidden;
+	background-color: #111;
+	color: #fff;
+	cursor: grab;
+	user-select: none;
+	text-align: center;
+	font-family: Arial;
+	font-size: 14px;
+}
+body:active {cursor: grabbing}

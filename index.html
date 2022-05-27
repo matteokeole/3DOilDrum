@@ -1,65 +1,28 @@
-<!--
-	3D animated & interactive Garry's Mod barrel made with vanilla CSS and JS.
-	GitHub repository: https://github.com/matteoo34/3DBarrel
-	Original made by Keith Clark (https://keithclark.co.uk/labs/css-fps)
-	Remade by Mattéo Legagneux
-	Copyright (C) 2021
--->
+<!-- See also https://keithclark.co.uk/labs/css-fps -->
 
 <!DOCTYPE html>
 
 <html lang="en">
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="3D interactive GMod barrel.">
+		<meta name="description" content="A 3D interactive Half Life 2 oil drum made with vanilla CSS.">
 		<meta name="keywords" content="3d, barrel, oil, drum, gmod, animation, interactive, css, javascript, vanilla, mattéo, legagneux">
-		<meta name="author" content="Keith Clark (original), Mattéo Legagneux (remake)">
+		<meta name="author" content="Keith Clark, Mattéo Legagneux">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<style>
-			/* Perspective and background */
-			body {
-				-webkit-perspective: 500px;
-				perspective: 500px;
-				height: 100vh;
-				overflow: hidden;
-				background-color: #000;
-				color: #fff;
-				cursor: grab;
-				user-select: none;
-				text-align: center;
-				font-family: Arial;
-				font-size: 14px
-			}
-			body:active {cursor: grabbing}
-
-			/* Barrel element */
-			.threedee {
-				top: 50%;
-				left: 50%;
-				position: absolute;
-				-webkit-backface-visibility: visible;
-				backface-visibility: visible;
-				-webkit-mask-image: none !important;
-				mask-image: none !important;
-				-webkit-transform-style: preserve-3d;
-				transform-style: preserve-3d
-			}
-
-			/* Toggle border checkbox */
-
-			#boxtoggle, label {cursor: pointer}
-
-			#boxtoggle:checked ~ .assembly .face {box-shadow: inset 0 0 0 1px #0f0}
-		</style>
+		<link rel="stylesheet" href="assets/css/main.css">
+		<script src="assets/js/main.js" defer></script>
 		<title>3D Barrel</title>
 	</head>
 
 	<body>
-		<input id="boxtoggle" type="checkbox">
-		<label for="boxtoggle">Show face borders</label>
-		<script src="main.js"></script>
-	</body>
+		<!-- Texture option -->
+		<div class="texture-option" title="Click to change texture">
+			<button id="texture">Applied texture: <span></span></button>
+		</div>
 
+		<!-- Wireframe option -->
+		<label for="wireframe">Toggle wireframe</label>
+		<input id="wireframe" type="checkbox">
+	</body>
 </html>

@@ -1,0 +1,26 @@
+/* Texture option */
+
+.texture-option {
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+#texture {
+	display: inline-block;
+	padding: 0;
+	border: unset;
+	background-color: unset;
+	color: inherit;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+}
+#texture:hover {text-decoration: underline}
+
+#texture span {font-style: italic}
+
+/* Wireframe checkbox */
+
+#wireframe, label {cursor: pointer}
+
+#wireframe:checked + .mesh .part {box-shadow: inset 0 0 0 1px #0f0}
