@@ -1,21 +1,21 @@
 const
 	R = {
-		x: -67.5, y: -22.5,
-		now: {x: 0, y: 0},
-		on: {x: 0, y: 0},
-		old: {x: 0, y: 0}
+		x:		-67.5, y: -22.5,
+		now:	{x: 0, y: 0},
+		on:		{x: 0, y: 0},
+		old:	{x: 0, y: 0},
 	},
 	w2 = innerWidth / 2,
 	h2 = innerHeight / 2,
-	S = 4, // Sensitivity (higher number = lower)
-	P = 2, // Smooth motion (higher number = smoother)
+	S = 4, // Sensitivity (higher = lower)
+	P = 2, // Smooth motion (higher = smoother)
 	SCALE = 1,
 	TEXTURES = ["Oil_Drum001h.png", "Oil_Drum001h2.png", "Oil_Drum001d.png"],
 	NAMESPACE = "assets/textures/",
 	createCylinder = (diameter, height, faceCount, texture) => {
-		let mesh = document.createElement("div"),
-			sideAngle = (Math.PI / faceCount) * 2,
-			sideLen = diameter * Math.tan(Math.PI / faceCount);
+		let mesh		= document.createElement("div"),
+			sideAngle	= (Math.PI / faceCount) * 2,
+			sideLen		= diameter * Math.tan(Math.PI / faceCount);
 
 		mesh.className = "part mesh";
 
@@ -33,10 +33,10 @@ const
 		[w, h, x, y, z, rx, ry, u, v] = [w, h, x, y, z, rx, ry, u, v].map(n => n.toFixed(2));
 		t = `url(${t})`;
 
-		let alpha = a || (Math.cos(rx / 1.5) * Math.cos(ry / 2)).toFixed(2),
-			grad = `linear-gradient(rgba(0, 0, 0, ${alpha}), rgba(0, 0, 0, ${alpha}))`,
-			transform = `translate3d(${x}px, ${y}px, ${z}px) rotateX(${rx}rad) rotateY(${ry}rad)`,
-			face = document.createElement("div");
+		let alpha		= a || (Math.cos(rx / 1.5) * Math.cos(ry / 2)).toFixed(2),
+			grad		= `linear-gradient(rgba(0, 0, 0, ${alpha}), rgba(0, 0, 0, ${alpha}))`,
+			transform	= `translate3d(${x}px, ${y}px, ${z}px) rotateX(${rx}rad) rotateY(${ry}rad)`,
+			face		= document.createElement("div");
 
 		face.className = "part";
 		face.style.cssText = `
@@ -82,10 +82,10 @@ const
 			R.x = ((R.now.x - R.on.x) / S) + R.old.x;
 			R.y = ((R.now.y - R.on.y) / S) + R.old.y;
 
-			if (R.x < -360) R.x += 360;
-			if (R.x > 360) R.x -= 360;
-			if (R.y < -90) R.y = -90;
-			if (R.y > 90) R.y = 90;
+			R.x < -360	&& (R.x += 360);
+			R.x > 360	&& (R.x -= 360);
+			R.y < -90	&& (R.y = -90);
+			R.y > 90	&& (R.y = 90);
 
 			let transform = `scale(${SCALE}) rotateX(${R.y.toFixed(P)}deg) rotateY(${R.x.toFixed(P)}deg)`
 			mesh.style["-webkit-transform"] = transform;
